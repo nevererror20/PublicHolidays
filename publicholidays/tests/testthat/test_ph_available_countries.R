@@ -9,7 +9,9 @@
 library(testthat)
 library(publicholidays)
 
-test_that("ph_available_countries returns a tbl_df", {
-  result <- ph_available_countries()
-  expect_s3_class(result, "tbl_df")
+test_that("ph_available_countries returns a tibble", {
+  countries <- ph_available_countries()
+  expect_true(tibble::is_tibble(countries))
+  expect_true("countryCode" %in% colnames(countries))
+  expect_true("name" %in% colnames(countries))
 })

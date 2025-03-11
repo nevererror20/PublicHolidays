@@ -1,11 +1,31 @@
-#' Get country info
+#' Get Country Information
 #'
-#' @param country_code Country code.
-#' @return A tibble with country information.
+#' This function retrieves detailed information about a specific country using the Nager.Date API.
+#'
+#' @param country_code A character string representing the ISO 3166-1 alpha-2 country code (e.g., "DE" for Germany).
+#'
+#' @return A tibble containing the following columns:
+#' \describe{
+#'   \item{commonName}{The common name of the country (e.g., "Germany").}
+#'   \item{officialName}{The official name of the country (e.g., "Federal Republic of Germany").}
+#'   \item{countryCode}{The ISO 3166-1 alpha-2 country code (e.g., "DE").}
+#'   \item{region}{The region where the country is located (e.g., "Europe").}
+#'   \item{borders}{A list of country codes for countries that share a border with the specified country.}
+#' }
+#'
 #' @export
 #'
 #' @examples
-#' ph_country_info("DE")
+#' # Get information about Germany
+#' country_info <- ph_country_info("DE")
+#' print(country_info)
+#'
+#' @seealso
+#' \code{\link{ph_available_countries}} for retrieving a list of available countries.
+#' \code{\link{ph_public_holidays}} for retrieving public holidays for a specific country and year.
+#'
+#' @references
+#' Nager.Date API documentation: \url{https://date.nager.at/Api}
 ph_country_info <- function(country_code) {
   base_url <- paste0("https://date.nager.at/api/v3/CountryInfo/", country_code)
   req <- httr2::request(base_url) |>
