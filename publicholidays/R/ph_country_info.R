@@ -34,11 +34,12 @@ ph_country_info <- function(country_code) {
     httr2::req_perform() |>
     httr2::resp_body_string() |>
     jsonlite::fromJSON()
-  tibble::tibble(
+  df <- tibble::tibble(
     commonName = resp$commonName,
     officialName = resp$officialName,
     countryCode = resp$countryCode,
     region = resp$region,
     borders = list(resp$borders)
   )
+  df
 }

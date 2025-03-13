@@ -1,4 +1,8 @@
 library(testthat)
+library(httptest2)
+library(tibble)
+
+library(testthat)
 
 test_that("ph_country_info returns correct information for Germany (DE)", {
   de_info <- ph_country_info("DE")
